@@ -380,15 +380,33 @@
   </main>
 
   <script>
-    const clickSound = new Audio("/sounds/click.mp3");
-    clickSound.volume = 0.2;
+  const clickSound = new Audio("/sounds/click.mp3");
+  clickSound.volume = 0.2;
+  clickSound.preload = "auto";
 
-    document.querySelectorAll(".sfx-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        clickSound.currentTime = 0;
-        clickSound.play().catch(() => {});
-      });
+  window.addEventListener("pointerdown", () => {
+    clickSound.play().then(() => {
+      clickSound.pause();
+      clickSound.currentTime = 0;
+    }).catch(() => {});
+  }, { once: true });
+
+  document.querySelectorAll(".sfx-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const href = btn.getAttribute("href");
+
+      if (!href || href.startsWith("#")) return;
+
+      e.preventDefault();
+
+      clickSound.currentTime = 0;
+      clickSound.play().catch(() => {});
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 120);
     });
-  </script>
+  });
+</script>
 </body>
 </html>

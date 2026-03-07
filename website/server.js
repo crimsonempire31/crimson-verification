@@ -99,92 +99,93 @@ app.get("/dashboard", requireAuth, (req, res) => {
   const displayName = user.global_name || user.username;
 
   res.send(`
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crimson Empire Verification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        font-family: Poppins, sans-serif;
-        background: linear-gradient(135deg,#1a0000,#050505);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 24px;
-      }
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crimson Empire Verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
 
-      .card{
-        width: min(760px, 100%);
-        background: rgba(20,0,0,0.85);
-        border: 1px solid rgba(255,0,0,0.2);
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 24px 70px rgba(0,0,0,0.45);
-      }
+    body {
+      margin: 0;
+      font-family: Poppins, sans-serif;
+      background: linear-gradient(135deg,#1a0000,#050505);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
 
-      h1{
-        margin: 0 0 10px 0;
-        font-size: 2.2rem;
-      }
+    .card {
+      width: min(760px, 100%);
+      background: rgba(20,0,0,0.85);
+      border: 1px solid rgba(255,0,0,0.2);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
 
-      p{
-        opacity: .85;
-        line-height: 1.7;
-        margin-bottom: 16px;
-      }
+    h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.2rem;
+    }
 
-      .user-box{
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 16px;
-        padding: 18px;
-        margin: 20px 0;
-      }
+    p {
+      opacity: .85;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
 
-      .btn{
-        display: inline-block;
-        margin-top: 20px;
-        padding: 14px 22px;
-        border-radius: 12px;
-        background: linear-gradient(135deg,#ff1e1e,#a80000);
-        color: white;
-        text-decoration: none;
-        font-weight: 700;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="card">
-      <h1>Welcome, ${displayName}</h1>
+    .user-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 20px 0;
+    }
 
-      <p>
-        You have successfully signed in with Discord.
-        The next step is linking your Roblox account so we can confirm your identity
-        and give you access to the Crimson Empire server.
-      </p>
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#ff1e1e,#a80000);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Welcome, ${displayName}</h1>
 
-      <p>
-        For your security, Crimson Empire never asks for your password directly.
-        You will be redirected to the official Roblox login system.
-      </p>
+    <p>
+      You have successfully signed in with Discord.
+      The next step is linking your Roblox account so we can confirm your identity
+      and give you access to the Crimson Empire server.
+    </p>
 
-      <div class="user-box">
-        <p><strong>Discord Username:</strong> ${user.username}</p>
-        <p><strong>Display Name:</strong> ${user.global_name || "Not set"}</p>
-        <p><strong>Discord ID:</strong> ${user.id}</p>
-      </div>
+    <p>
+      For your security, Crimson Empire never asks for your password directly.
+      You will be redirected to the official Roblox login system.
+    </p>
 
-      <a class="btn" href="/roblox">Continue to Roblox Verification</a>
+    <div class="user-box">
+      <p><strong>Discord Username:</strong> ${user.username}</p>
+      <p><strong>Display Name:</strong> ${user.global_name || "Not set"}</p>
+      <p><strong>Discord ID:</strong> ${user.id}</p>
     </div>
-  </body>
-  </html>
+
+    <a class="btn" href="/roblox">Continue to Roblox Verification</a>
+  </div>
+</body>
+</html>
   `);
 });
 
@@ -193,75 +194,73 @@ app.get("/roblox", requireAuth, (req, res) => {
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Roblox Verification</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roblox Verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
 
-<style>
-* { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Poppins, sans-serif;
+      background: linear-gradient(135deg,#1a0000,#050505);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
 
-body{
-margin: 0;
-font-family: Poppins, sans-serif;
-background: linear-gradient(135deg,#1a0000,#050505);
-color: white;
-display: flex;
-align-items: center;
-justify-content: center;
-min-height: 100vh;
-padding: 24px;
-}
+    .card {
+      width: min(760px, 100%);
+      background: rgba(20,0,0,.85);
+      border: 1px solid rgba(255,0,0,.2);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
 
-.card{
-width: min(760px, 100%);
-background: rgba(20,0,0,.85);
-border: 1px solid rgba(255,0,0,.2);
-padding: 40px;
-border-radius: 20px;
-box-shadow: 0 24px 70px rgba(0,0,0,0.45);
-}
+    h1 {
+      margin: 0 0 14px 0;
+      font-size: 2.2rem;
+    }
 
-h1{
-margin: 0 0 14px 0;
-font-size: 2.2rem;
-}
+    p {
+      opacity: .85;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
 
-p{
-opacity: .85;
-line-height: 1.7;
-margin-bottom: 16px;
-}
-
-.btn{
-display: inline-block;
-margin-top: 20px;
-padding: 14px 22px;
-border-radius: 12px;
-background: linear-gradient(135deg,#ff1e1e,#a80000);
-color: white;
-text-decoration: none;
-font-weight: 700;
-}
-</style>
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#ff1e1e,#a80000);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
 </head>
-
 <body>
-<div class="card">
-<h1>Roblox Account Linking</h1>
+  <div class="card">
+    <h1>Roblox Account Linking</h1>
 
-<p>
-To complete verification, you must link your Roblox account.
-You will be redirected to Roblox to confirm ownership.
-</p>
+    <p>
+      To complete verification, you must link your Roblox account.
+      You will be redirected to Roblox to confirm ownership.
+    </p>
 
-<p>
-After linking your account, you will automatically receive
-your verified role in the Discord server.
-</p>
+    <p>
+      After linking your account, you will automatically receive
+      your verified role in the Discord server.
+    </p>
 
-<a class="btn" href="/auth/roblox">Continue with Roblox</a>
-</div>
+    <a class="btn" href="/auth/roblox">Continue with Roblox</a>
+  </div>
 </body>
 </html>
   `);
@@ -319,78 +318,185 @@ app.get("/auth/roblox/callback", requireAuth, async (req, res) => {
     await verifyUser(req.session.discordUser.id);
 
     res.send(`
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Verification Complete</title>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
-        <style>
-          * { box-sizing: border-box; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verification Complete</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
 
-          body {
-            margin: 0;
-            font-family: "Poppins", sans-serif;
-            min-height: 100vh;
-            background:
-              radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
-              radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
-              linear-gradient(135deg, #1a0000, #050505);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-          }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, #1a0000, #050505);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
 
-          .card {
-            width: min(760px, 100%);
-            background: rgba(20, 0, 0, 0.82);
-            border: 1px solid rgba(255, 0, 0, 0.18);
-            border-radius: 24px;
-            padding: 36px 28px;
-            box-shadow: 0 24px 70px rgba(0,0,0,0.45);
-          }
+    .card {
+      width: min(760px, 100%);
+      background: rgba(20, 0, 0, 0.82);
+      border: 1px solid rgba(255, 0, 0, 0.18);
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
 
-          h1 {
-            font-size: 2.2rem;
-            margin-bottom: 12px;
-          }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
 
-          p {
-            color: #d0bcbc;
-            line-height: 1.8;
-            margin-bottom: 16px;
-          }
+    p {
+      color: #d0bcbc;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
 
-          .btn {
-            display: inline-block;
-            padding: 14px 20px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #ff1e1e, #a80000);
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            margin-top: 12px;
-          }
-        </style>
-      </head>
-      <body>
-        <main class="card">
-          <h1>Verification Complete</h1>
-          <p>Your Discord account has been linked with Roblox successfully.</p>
-          <p><strong>Roblox Username:</strong> ${robloxUser.name || "Unknown"}</p>
-          <p><strong>Roblox User ID:</strong> ${robloxUser.sub || "Unknown"}</p>
-          <p>Your verified role has now been assigned in the Discord server.</p>
-          <a class="btn" href="/">Return Home</a>
-        </main>
-      </body>
-      </html>
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff1e1e, #a80000);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Verification Complete</h1>
+    <p>Your Discord account has been linked with Roblox successfully.</p>
+    <p><strong>Roblox Username:</strong> ${robloxUser.name || "Unknown"}</p>
+    <p><strong>Roblox User ID:</strong> ${robloxUser.sub || "Unknown"}</p>
+    <p>Your verified role has now been assigned in the Discord server.</p>
+    <a class="btn" href="/">Return Home</a>
+  </main>
+</body>
+</html>
     `);
   } catch (error) {
-    console.error("Roblox OAuth error:", error.response?.data || error.message);
-    res.status(500).send("Roblox verification failed.");
+    console.error("Roblox OAuth error:", {
+      message: error.message,
+      status: error.response?.status,
+      data: error.response?.data
+    });
+
+    res.status(500).send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verification Failed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, #1a0000, #050505);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: rgba(20, 0, 0, 0.82);
+      border: 1px solid rgba(255, 0, 0, 0.18);
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 80, 80, 0.25);
+      background: rgba(255, 0, 0, 0.08);
+      color: #ffd3d3;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 12px 0;
+    }
+
+    p {
+      color: #d0bcbc;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff1e1e, #a80000);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge">Verification Error</div>
+    <h1>Roblox verification failed</h1>
+    <p>
+      We couldn't complete your Roblox account linking. This can happen if the authorization expired,
+      the session timed out, or Roblox rejected the request.
+    </p>
+    <p>
+      Please go back and try again. If the issue continues, open a verification ticket in the server
+      and staff will assist you.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="/roblox">Try Again</a>
+      <a class="btn btn-secondary" href="/">Return Home</a>
+    </div>
+  </main>
+</body>
+</html>
+    `);
   }
 });
 
