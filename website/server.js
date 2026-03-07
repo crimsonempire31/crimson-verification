@@ -52,7 +52,107 @@ app.get("/auth/discord/callback", async (req, res) => {
   const { code } = req.query;
 
   if (!code) {
-    return res.status(400).send("Missing Discord authorization code.");
+    return res.status(400).send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discord Login Failed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, #1a0000, #050505);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: rgba(20, 0, 0, 0.82);
+      border: 1px solid rgba(255, 0, 0, 0.18);
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 80, 80, 0.25);
+      background: rgba(255, 0, 0, 0.08);
+      color: #ffd3d3;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 12px 0;
+    }
+
+    p {
+      color: #d0bcbc;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff1e1e, #a80000);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge">Login Error</div>
+    <h1>Discord login failed</h1>
+    <p>
+      We couldn't complete your Discord login because the authorization code was missing or expired.
+    </p>
+    <p>
+      Please return to the verification page and try again. If the issue continues, contact staff for help.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="/verify.html">Try Again</a>
+      <a class="btn btn-secondary" href="/">Return Home</a>
+    </div>
+  </main>
+</body>
+</html>
+    `);
   }
 
   try {
@@ -89,8 +189,114 @@ app.get("/auth/discord/callback", async (req, res) => {
 
     res.redirect("/dashboard");
   } catch (error) {
-    console.error("Discord OAuth error:", error.response?.data || error.message);
-    res.status(500).send("Discord login failed.");
+    console.error("Discord OAuth error:", {
+      message: error.message,
+      status: error.response?.status,
+      data: error.response?.data
+    });
+
+    res.status(500).send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discord Login Failed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, #1a0000, #050505);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: rgba(20, 0, 0, 0.82);
+      border: 1px solid rgba(255, 0, 0, 0.18);
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 80, 80, 0.25);
+      background: rgba(255, 0, 0, 0.08);
+      color: #ffd3d3;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 12px 0;
+    }
+
+    p {
+      color: #d0bcbc;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff1e1e, #a80000);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="badge">Login Error</div>
+    <h1>Discord login failed</h1>
+    <p>
+      We couldn't complete your Discord sign-in. This can happen if the authorization expired,
+      the session timed out, or Discord rejected the request.
+    </p>
+    <p>
+      Please go back and try again. If the issue continues, contact staff for help.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="/verify.html">Try Again</a>
+      <a class="btn btn-secondary" href="/">Return Home</a>
+    </div>
+  </main>
+</body>
+</html>
+    `);
   }
 });
 
