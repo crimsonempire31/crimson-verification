@@ -25,7 +25,7 @@ client.on("guildMemberAdd", async (member) => {
 To gain full access to the server, you must complete **Roblox account verification**.
 
 🔐 Verification is done through our official website:
-http://localhost:3000
+https://crimsonempire.xyz
 
 📌 After successfully completing verification:
 • return to the server
