@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const axios = require("axios");
+const { verifyUser } = require("../bot/bot");
 
 const app = express();
 
@@ -315,13 +316,15 @@ app.get("/auth/roblox/callback", requireAuth, async (req, res) => {
     const robloxUser = userInfoResponse.data;
     req.session.robloxUser = robloxUser;
 
+    await verifyUser(req.session.discordUser.id);
+
     res.send(`
       <!DOCTYPE html>
       <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Roblox Verified</title>
+        <title>Verification Complete</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
         <style>
           * { box-sizing: border-box; }
@@ -379,6 +382,7 @@ app.get("/auth/roblox/callback", requireAuth, async (req, res) => {
           <p>Your Discord account has been linked with Roblox successfully.</p>
           <p><strong>Roblox Username:</strong> ${robloxUser.name || "Unknown"}</p>
           <p><strong>Roblox User ID:</strong> ${robloxUser.sub || "Unknown"}</p>
+          <p>Your verified role has now been assigned in the Discord server.</p>
           <a class="btn" href="/">Return Home</a>
         </main>
       </body>
