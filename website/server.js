@@ -4,7 +4,7 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const axios = require("axios");
-const { verifyUser } = require("../bot/bot");
+const { verifyUser } = require("../bot/verifyUser");
 
 const app = express();
 
