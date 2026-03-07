@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crimson Empire Verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg1: #1a0000;
+      --bg2: #050505;
+      --panel: rgba(20, 0, 0, 0.82);
+      --panel2: rgba(28, 0, 0, 0.76);
+      --border: rgba(255, 0, 0, 0.18);
+      --text: #ffffff;
+      --muted: #c8bcbc;
+      --accent: #ff1e1e;
+      --accent-dark: #a80000;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      padding: 28px;
+    }
+
+    .page {
+      width: min(1050px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: rgba(18, 0, 0, 0.66);
+      border: 1px solid rgba(255, 0, 0, 0.14);
+      border-radius: 26px;
+      padding: 30px 24px 24px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.44);
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 0, 0, 0.08);
+      border: 1px solid rgba(255, 0, 0, 0.18);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #ffd7d7;
+    }
+
+    .badge::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ff2b2b;
+      box-shadow: 0 0 12px #ff2b2b;
+    }
+
+    .back {
+      color: #ffd3d3;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+      margin-bottom: 12px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(27, 0, 0, 0.85), rgba(12, 0, 0, 0.75));
+      border: 1px solid rgba(255, 0, 0, 0.14);
+      border-radius: 24px;
+      padding: 26px 24px 22px;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(20, 86, 42, 0.28);
+      border: 1px solid rgba(67, 212, 125, 0.3);
+      color: #d9ffe7;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34db7a;
+      box-shadow: 0 0 12px #34db7a;
+    }
+
+    .option {
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.86rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 12px;
+    }
+
+    .desc {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+      max-width: 780px;
+    }
+
+    .features {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 12px;
+      line-height: 1.6;
+      color: #f0e7e7;
+    }
+
+    .icon {
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .verify-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      box-shadow: 0 12px 28px rgba(255, 0, 0, 0.22);
+      transition: 0.22s ease;
+    }
+
+    .verify-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(255, 0, 0, 0.3);
+    }
+
+    .helper {
+      color: #9e8d8d;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+
+      .hero {
+        padding: 20px 16px;
+      }
+
+      .card {
+        padding: 20px 16px;
+      }
+
+      .verify-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="topbar">
+        <div class="badge">Roblox Verification</div>
+        <a class="back" href="/index.html">← Back to Home</a>
+      </div>
+
+      <h1>Verification</h1>
+      <p class="subtitle">
+        Link your Roblox account to your Discord profile to unlock full access to Crimson Empire.
+      </p>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="status">Available</div>
+          <div class="option">Option 1</div>
+        </div>
+
+        <h2>OAuth via Roblox application</h2>
+        <p class="desc">
+          Fast and secure linking using the official Roblox OAuth flow. Sign in and confirm your account without manual edits.
+        </p>
+
+        <div class="features">
+          <div class="feature"><span class="icon">✅</span><span>Very fast: usually takes 20–40 seconds.</span></div>
+          <div class="feature"><span class="icon">🔒</span><span>Secure: no passwords are shared with the website.</span></div>
+          <div class="feature"><span class="icon">⚡</span><span>Automatic: your account data is retrieved instantly after confirmation.</span></div>
+        </div>
+
+        <div class="btn-row">
+          <a href="/auth/discord" class="verify-btn">🔑 Sign in with Discord</a>
+          <span class="helper">Recommended verification method for all members.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Crimson Empire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg1: #1a0000;
+      --bg2: #050505;
+      --panel: rgba(20, 0, 0, 0.82);
+      --border: rgba(255, 0, 0, 0.18);
+      --text: #ffffff;
+      --muted: #c8bcbc;
+      --accent: #ff1e1e;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      padding: 24px;
+    }
+
+    .wrap {
+      width: min(960px, 100%);
+      margin: 0 auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 34px 28px 26px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 0, 0, 0.08);
+      border: 1px solid rgba(255, 0, 0, 0.2);
+      color: #ffd3d3;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .back {
+      color: #ffd3d3;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.8rem);
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+
+    .lead {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+
+      .wrap {
+        padding: 24px 16px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div class="badge">About Crimson Empire</div>
+      <a class="back" href="/index.html">← Back to Home</a>
+    </div>
+
+    <h1>About Us</h1>
+    <p class="lead">
+      Crimson Empire is a structured Roblox community built around activity, loyalty, organization, and competitive presence.
+      We focus on building a recognizable group identity and maintaining a strong standard for the members who represent us.
+    </p>
+
+    <section class="section">
+      <h2>What we do</h2>
+      <p>
+        We participate in organized gameplay, group events, community building, and server coordination.
+        Our goal is to create a place where members can be active, improve, and contribute to a larger community identity.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>What we value</h2>
+      <p>
+        We value discipline, consistency, teamwork, and respect for the group. Members are expected to follow standards,
+        stay active, and represent Crimson Empire properly within and outside the server.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Why verification matters</h2>
+      <p>
+        Verification helps us protect the server, confirm account ownership, synchronize roles, and keep community access organized.
+        It is required before full access is granted.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

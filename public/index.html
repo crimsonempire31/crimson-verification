@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crimson Empire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg1: #1a0000;
+      --bg2: #050505;
+      --panel: rgba(20, 0, 0, 0.82);
+      --border: rgba(255, 0, 0, 0.18);
+      --text: #ffffff;
+      --muted: #c8bcbc;
+      --accent: #ff1e1e;
+      --accent-dark: #a80000;
+      --soft: rgba(255, 255, 255, 0.05);
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    body::before {
+      width: 340px;
+      height: 340px;
+      top: -100px;
+      left: -80px;
+      background: rgba(255, 0, 0, 0.12);
+    }
+
+    body::after {
+      width: 380px;
+      height: 380px;
+      bottom: -140px;
+      right: -100px;
+      background: rgba(150, 0, 0, 0.14);
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(920px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 42px 34px 30px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo-wrap {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.16), rgba(255, 0, 0, 0.04));
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.18);
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      filter: drop-shadow(0 0 16px rgba(255, 0, 0, 0.5));
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 auto 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 0, 0, 0.2);
+      background: rgba(255, 0, 0, 0.08);
+      color: #ffd3d3;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1.04;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .preview {
+      margin: 28px auto 28px;
+      max-width: 760px;
+      padding: 22px 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: left;
+    }
+
+    .preview h2 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .preview p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn {
+      min-width: 210px;
+      padding: 16px 24px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      text-align: center;
+      transition: 0.22s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      box-shadow: 0 12px 28px rgba(255, 0, 0, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(255, 0, 0, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      color: #867676;
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 30px 18px 22px;
+      }
+
+      .preview {
+        padding: 18px 16px;
+      }
+
+      .btn {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="center">
+      <div class="logo-wrap">
+        <svg class="logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Crimson Empire crescent">
+          <path
+            d="M352.7 387.8C224.2 387.8 120 283.6 120 155.1C120 102.9 137.2 54.7 166.2 15.9C84.8 49.2 26 128.8 26 222.2C26 345.4 125.6 445 248.8 445C342.2 445 421.8 386.2 455.1 304.8C416.3 333.8 368.1 351 315.9 351C328 374.1 340.1 380.1 352.7 387.8Z"
+            fill="#ff2424"
+          />
+        </svg>
+      </div>
+
+      <div class="eyebrow">Welcome Portal</div>
+      <h1>Welcome to Crimson Empire</h1>
+
+      <p class="intro">
+        Enter the official Crimson Empire portal to learn who we are, what we do, and complete the verification process for full server access.
+      </p>
+    </div>
+
+    <section class="preview">
+      <h2>Who are we?</h2>
+      <p>
+        Crimson Empire is a competitive Roblox community focused on coordination, activity, and organized gameplay.
+        We aim to build a strong member base, maintain standards, and create an environment where committed players
+        can represent the group with pride. New members are required to verify before receiving access to the full server.
+      </p>
+    </section>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/verify.html">Verification</a>
+      <a class="btn btn-secondary" href="/about.html">About Us</a>
+    </div>
+
+    <div class="footer">Crimson Empire • Official Portal</div>
+  </main>
+</body>
+</html>
