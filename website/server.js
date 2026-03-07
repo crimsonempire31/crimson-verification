@@ -521,7 +521,74 @@ app.get("/auth/roblox/callback", requireAuth, async (req, res) => {
     const robloxUser = userInfoResponse.data;
     req.session.robloxUser = robloxUser;
 
-    await verifyUser(req.session.discordUser.id);
+try {
+  await verifyUser(req.session.discordUser.id);
+} catch (verifyError) {
+  console.error("Discord role assignment error:", verifyError);
+  return res.status(500).send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Role Assignment Failed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120, 0, 0, 0.18), transparent 30%),
+        linear-gradient(135deg, #1a0000, #050505);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: min(760px, 100%);
+      background: rgba(20, 0, 0, 0.82);
+      border: 1px solid rgba(255, 0, 0, 0.18);
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+    p {
+      color: #d0bcbc;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff1e1e, #a80000);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Verification completed, but role assignment failed</h1>
+    <p>Your Roblox account was linked successfully, but we couldn't assign your Discord role automatically.</p>
+    <p>Please open a verification ticket and staff will assist you.</p>
+    <a class="btn" href="/">Return Home</a>
+  </main>
+</body>
+</html>
+  `);
+}
 
     res.send(`
 <!DOCTYPE html>
