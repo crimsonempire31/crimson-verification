@@ -46,13 +46,15 @@
     }
 
     .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
     .badge {
       display: inline-block;
@@ -67,10 +69,16 @@
     }
 
     .back {
-      color: #ffd3d3;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
+  color: #ffd3d3;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.back:hover {
+  color: #ff4b4b;
+  transform: translateX(-3px);
+}
 
     h1 {
       font-size: clamp(2.1rem, 5vw, 3.8rem);
@@ -170,7 +178,17 @@
 
 .wrap {
   position: relative;
-  z-index: 1;
+}
+
+.wrap::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: radial-gradient(circle, rgba(255,0,0,0.25), transparent 70%);
+  opacity: 0.15;
+  filter: blur(40px);
+  z-index: -1;
 }
 
 @keyframes embersDrift {
