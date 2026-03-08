@@ -85,17 +85,45 @@
     }
 
     .section {
-      margin-top: 22px;
-      padding: 20px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(circle at top left, rgba(255, 40, 40, 0.25), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.section:hover {
+  transform: translateY(-4px);
+  border: 1px solid rgba(255, 60, 60, 0.35);
+  box-shadow: 0 12px 35px rgba(255, 0, 0, 0.18);
+}
+
+.section:hover::before {
+  opacity: 1;
+}
 
     .section h2 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  transition: color 0.25s ease;
+}
+
+.section:hover h2 {
+  color: #ff4b4b;
+}
 
     .section p {
       color: var(--muted);
@@ -111,25 +139,68 @@
         padding: 24px 16px 20px;
       }
     }
+    
+    .embers {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.embers::before,
+.embers::after {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  left: -100%;
+  top: -100%;
+  background-image: radial-gradient(circle, rgba(255, 70, 70, 0.45) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: 0.08;
+  animation: embersDrift 38s linear infinite;
+}
+
+.embers::after {
+  background-size: 60px 60px;
+  opacity: 0.05;
+  animation-duration: 62s;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes embersDrift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-800px);
+  }
+}
   </style>
 </head>
 <body>
   <main class="wrap">
     <div class="top">
+      <div class="embers">
       <div class="badge">About Crimson Empire</div>
       <a class="back" href="/index.html">← Back to Home</a>
     </div>
 
     <h1>About Us</h1>
     <p class="lead">
-      Crimson Empire is a structured Roblox community built around activity, loyalty, organization, and competitive presence.
+      Crimson Empire is a structured Roblox raiding community built around activity, loyalty, organization, and competitive presence.
       We focus on building a recognizable group identity and maintaining a strong standard for the members who represent us.
     </p>
 
     <section class="section">
       <h2>What we do</h2>
       <p>
-        We participate in organized gameplay, group events, community building, and server coordination.
+        We participate in raids, clanwars, and gamenights. We host events, giveaways, and competitions. We create content, share memes, and build a community that thrives on activity and engagement.
         Our goal is to create a place where members can be active, improve, and contribute to a larger community identity.
       </p>
     </section>
@@ -147,6 +218,22 @@
       <p>
         Verification helps us protect the server, confirm account ownership, synchronize roles, and keep community access organized.
         It is required before full access is granted.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>More about the server</h2>
+      <p>
+        Crimson Empire is designed to be more than just a standard Roblox server. We aim to build a serious and active
+        community where members can participate in events, communicate with others, and grow within a structured environment.
+      </p>
+      <p>
+        Our server includes organized channels, verification systems, support areas, and community spaces that help members
+        stay informed and involved. We want every member to feel like they are part of something larger than just a group chat.
+      </p>
+      <p>
+        Crimson Empire is currently owned by Sleepy and Stalker, and Co-Owned by Blood and Demi. 
+        Together, we build, we raid, we win. We are Crimson Empire.
       </p>
     </section>
   </main>
