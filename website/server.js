@@ -522,7 +522,7 @@ app.get("/auth/roblox/callback", requireAuth, async (req, res) => {
     req.session.robloxUser = robloxUser;
 
 try {
-  await verifyUser(req.session.discordUser.id);
+  await verifyUser(req.session.discordUser.id, robloxUser);
 } catch (verifyError) {
   console.error("Discord role assignment error:", verifyError);
   return res.status(500).send(`
